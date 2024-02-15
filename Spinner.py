@@ -1,4 +1,4 @@
-import SpinFile
+#Written By Austin Mills
 
 import random
 def create_synonym_dict(synonymfile):
@@ -13,9 +13,13 @@ def create_synonym_dict(synonymfile):
     for key in response_dict:
         response_dict[key] = response_dict[key].split(',')
     return response_dict
-
-def clean_extra_lines(text):
-    text = text.strip('\n')
+def read_file(text_file):
+    text = open(text_file)
+    text = text.read()
+    text = text.strip()
+    text = text.lower()
+    text = text.split('\n')
+    text = ''.join(text)
     return text
 
 def make_string_list(text):
@@ -24,15 +28,19 @@ def make_string_list(text):
 
 class Spinner:
     def __init__(self, text_file, synonyms):
-        self.text = clean_extra_lines(text_file)
+        self.text = read_file(text_file)
         self.synonyms = create_synonym_dict(synonyms)
 
     def change_words(self):
+        complete_changed_text = ''
         changed_text_list = []
         text_list = make_string_list(self.text)
         for word in text_list:
-            if word not in self.synonyms:
+            random_number = random.randint(0,99)
+            if word not in self.synonyms or random_number <= 50:
                 changed_text_list.append(word)
-            if word in self.synonyms:
+            elif word in self.synonyms and random_number > 50:
                 changed_text_list.append(self.synonyms[word][random.randint(0, len(self.synonyms[word]) - 1)])
-        return changed_text_list
+        for word in changed_text_list:
+            complete_changed_text = complete_changed_text + word + ' '
+        return complete_changed_text
