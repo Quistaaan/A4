@@ -8,8 +8,9 @@ def main():
     original_text = read_file(open ('essay.txt'))
     print('Original: ' + original_text)
     spinner = Spinner.Spinner(original_text, 'synonyms-simplified.txt')
-    print(spinner.clean_extra_lines())
-    print(spinner.synonyms)
+    print(spinner.change_words())
+
+
 
 
 if __name__ == "__main__":
