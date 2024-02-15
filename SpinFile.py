@@ -9,7 +9,7 @@ def main():
     print('Original: ' + original_text)
     spinner = Spinner.Spinner(original_text, 'synonyms-simplified.txt')
     print(spinner.clean_extra_lines())
-
+    print(spinner.synonyms)
 
 
 if __name__ == "__main__":
