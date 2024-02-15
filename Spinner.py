@@ -19,7 +19,7 @@ def read_file(text_file):
     text = text.strip()
     text = text.lower()
     text = text.split('\n')
-    text = ''.join(text)
+    text = ' '.join(text)
     return text
 
 def make_string_list(text):
